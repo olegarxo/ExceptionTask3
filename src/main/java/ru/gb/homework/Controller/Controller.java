@@ -16,12 +16,30 @@ public class Controller {
         if (outConsole.createUser()){
             User person = personService.createPerson();
             try {
-                person.setFullName(outConsole.enterFullname());
+                String fullName = outConsole.enterFullname();
+                personService.enterFullName(fullName,person);
             }catch (NotFullEnterData e){
                 e.getStackTrace();
             }
+            try {
+                personService.enterBirthday(outConsole.enterBirthday(),person);
+            }catch (NotFullEnterData e){
+                e.getStackTrace();
+            }
+            try {
+                personService.enterTelephoneNumber(Integer.parseInt(outConsole.enterTelephoneNumber()), person);
+            }catch (NotFullEnterData e){
+                e.getStackTrace();
+            }
+            try {
+                personService.enterSex(outConsole.sex(), person);
+            }catch (NotFullEnterData e){
+                e.getStackTrace();
+            }
+        }else{
+            System.out.println("Не хочет");
         }
-        String fullName = outConsole.enterFullname();
+
     }
 
 

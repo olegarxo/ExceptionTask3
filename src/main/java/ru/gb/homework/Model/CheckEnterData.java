@@ -30,12 +30,14 @@ public class CheckEnterData {
         return telefonNumberToString.matches("\\d{11}");
     }
 
-    public boolean checkSex(char sex) {
-        if (sex == 'f' || sex == 'm') {
-            return true;
-        } else {
-            return false;
-        }
-
+    public boolean checkSex(char[] sex) {
+        if (sex.length == 1) {
+            if (sex[0] == 'f' || sex[0] == 'm') {
+                return true;
+            } else {
+                return false;
+            }
+        }else return false;
     }
+
 }

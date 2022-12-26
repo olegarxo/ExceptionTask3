@@ -9,10 +9,9 @@ import java.util.regex.Pattern;
 public class PersonService {
 
     private List<User> listAllUser = new LinkedList<>();
-    private final Person person = new Person();
     private final CheckEnterData checkEnterData = new CheckEnterData();
 
-    public void enterFullName(String fullName) throws NotFullEnterData {
+    public void enterFullName(String fullName, User person) throws NotFullEnterData {
         if (checkEnterData.checkfullName(fullName)) {
             person.setFullName(fullName);
         } else {
@@ -20,7 +19,7 @@ public class PersonService {
         }
     }
 
-    public void enterBirthday(String birthday) throws NotFullEnterData {
+    public void enterBirthday(String birthday, User person) throws NotFullEnterData {
         if (checkEnterData.checkBitrhday(birthday)) {
             person.setDaysBirthday(birthday);
         } else {
@@ -28,17 +27,17 @@ public class PersonService {
         }
     }
 
-    public void enterTelephoneNumber(Integer telephone) throws NotFullEnterData {
+    public void enterTelephoneNumber(Integer telephone, User person) throws NotFullEnterData {
         if (checkEnterData.checkteTephoneNumver(telephone)) {
-
+            person.setTelephoneNumber(telephone);
         } else {
             throw new NotFullEnterData(telephone.toString());
         }
     }
 
-    public void enterSex(Character chars) throws NotFullEnterData {
-        if (checkEnterData.checkSex(chars)) {
-            person.setSex(chars);
+    public void enterSex(String chars, User person) throws NotFullEnterData {
+        if (checkEnterData.checkSex(chars.toCharArray())) {
+            person.setSex(chars.charAt(0));
         } else {
             throw new NotFullEnterData(chars.toString());
         }
@@ -47,9 +46,6 @@ public class PersonService {
         return listAllUser;
     }
 
-    public void setListAllUser(List<User> listAllUser) {
-        this.listAllUser = listAllUser;
-    }
     public User createPerson(){
         User person = new Person();
         listAllUser.add(person);
